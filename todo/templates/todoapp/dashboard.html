@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo|Dashboard</title>
+</head>
+<body>
+    
+       <h1>Todo Dashboard</h1>
+       <p>
+           <button><a href="/add_task" target="_blank">Add Task</a></button>&nbsp;&nbsp;
+           <button><a href="/authapp/logout">Logout</a></button> 
+
+       </p>
+{% comment %}
+       {{a}} <br>
+       Hi,{{user}} <br>
+
+       {% if a > b %}
+             <p>In if block</p>
+             {{a}} is greater.
+
+       {% else %}
+             <p>In else block</p>
+             {{b}} is greater.
+       {% endif %}      
+
+       <hr>
+       <p>Loop control instruction</p>
+
+       {% for x in l %} <!-- x in [10,20,30,40,50,60]-->
+              {{x}} <br>
+
+       {% endfor %}    
+{% endcomment %}
+{% comment %}
+{{data}}
+{% endcomment %}
+
+{% comment %}
+{% for x in data %}
+    {{x}} <br>
+    ID:{{x.id}} <br>
+    Title:{{x.title}}<br>
+    details:{{x.detail}}<br>
+    Due Date:{{x.due_dt}}<br>
+    <br>
+
+{% endfor %} 
+
+{% endcomment %}
+
+<table border="1" align="center">
+          <tr>
+                <th>Sr.No</th>
+                <th>Task Title</th>
+                <th>Task Details</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
+           </tr>
+
+      {% for x in data %}
+            <tr>
+                 <td>{{x.id}}</td>
+                 <td>{{x.title}}</td>
+                 <td>{{x.detail}}</td>
+                 <td>{{x.due_dt}}</td>
+                 {% if x.is_completed == 0 %}
+                    <td style="color:red;">Pending</td>
+                 {% else %}
+                    <td style="color:green;">Completed</td>
+                 {% endif %}      
+                 
+                 <td><a href="/completed/{{x.id}}"><button>Mark As Completed</button></a></td>
+                 <td><a href="/edit/{{x.id}}"><button>Edit</button></a></td>
+                 <td><a href="/delete/{{x.id}}"><button>Delete</button></a></a.href></td>
+
+            </tr> 
+      {% endfor %}          
+
+
+</table>
+
+</body>
+</html>
